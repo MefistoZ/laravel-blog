@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Обработка формы с использованием middleware
+//Route::get('/form', function () {
+//    return view('welcome');
+//})->middleware('google.recaptcha');
