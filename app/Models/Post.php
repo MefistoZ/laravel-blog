@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'preview',
+        'description',
+        'thumbnail',
+    ];
+
+    public function comments()
+    {
+        $this->hasMany(Comment::class)->orderBy('created_at');
+    }
+
 }
