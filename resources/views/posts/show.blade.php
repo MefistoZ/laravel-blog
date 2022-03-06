@@ -8,7 +8,7 @@
         <div class="m-auto px-4 py-8 max-w-xl">
             <div class="bg-white shadow-2xl" >
                 <div>
-                    <img src="{{ $post->thumbnail }}">
+                    <img src="/storage/posts/{{ $post->thumbnail }}">
                 </div>
                 <div class="px-4 py-2 mt-2 bg-white">
                     <h2 class="font-bold text-2xl text-gray-800">{{ $post->title }}</h2>

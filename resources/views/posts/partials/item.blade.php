@@ -2,7 +2,7 @@
     <div class="bg-white shadow-2xl">
         <div>
             <a href="{{ route('posts.show', $post->id) }}">
-                <img src="{{ $post->thumbnail }}">
+                <img src="/storage/posts/{{ $post->thumbnail }}">
             </a>
         </div>
         <div class="px-4 py-2 mt-2 bg-white">
