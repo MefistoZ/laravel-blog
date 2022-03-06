@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.app')
 
-        <title>Laravel</title>
-        <link href="/css/app.css" rel="stylesheet">
-    </head>
-    <body class="antialiased">
+@section('title', 'Главная страница')
 
-    <script src="/js/app.js"></script>
-    </body>
-</html>
+@section('content')
+    @include('partials.header')
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 mb-20">
+        @foreach($posts as $post)
+            @include('partials.posts.item', ['post' => $post])
+        @endforeach
+    </div>
+@endsection
