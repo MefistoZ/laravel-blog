@@ -7,12 +7,18 @@
         <div class="bg-white w-96 shadow-xl rounded p-5">
             <h1 class="text-3xl font-medium">Вход</h1>
 
-            <form class="space-y-5 mt-5">
-                <input type="text" class="w-full h-12 border border-red-500 rounded px-3" placeholder="Email" />
+            <form method="post" action="{{ route('login_process') }}" class="space-y-5 mt-5">
+                @csrf
 
-                <p class="text-red-500">Ошибка ввода</p>
+                <input name="email" type="email" class="w-full h-12 border border-gray-500 rounded px-3 @error('email') border-red-500 @enderror" placeholder="Email" />
+                @error('email')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
 
-                <input type="password" class="w-full h-12 border border-gray-800 rounded px-3" placeholder="Пароль" />
+                <input name="password" type="password" class="w-full h-12 border border-gray-500 rounded px-3 @error('password') border-red-500 @enderror" placeholder="Пароль" />
+                @error('password')
+                <p class="text-red-500">{{ $message }}</p>
+                @enderror
 
                 <div>
                     <a href="#" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Забыли пароль?</a>

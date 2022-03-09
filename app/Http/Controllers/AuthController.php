@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,9 +47,30 @@ class AuthController extends Controller
         return redirect(route('home'));
     }
 
+    /**
+     * Метод разлогинивает пользователя
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function logout()
     {
         Auth::logout();
         return redirect(route('home'));
     }
+
+    public function login(Request $request)
+    {
+        $data = $request->validate([
+            'email' => ['required', 'email', 'string'],
+            'password' => ['required'],
+        ]);
+        if (auth('web')->attempt($data)) {
+            return redirect(route('home'));
+        }
+
+        return redirect(route('login'))->withErrors([
+            'email' => 'Проверьте правильность введённых данных'
+        ]);
+    }
+
 }
