@@ -7,10 +7,31 @@
         <div class="bg-white w-96 shadow-xl rounded p-5">
             <h1 class="text-3xl font-medium">Регистрация</h1>
 
-            <form class="space-y-5 mt-5">
-                <input type="text" class="w-full h-12 border border-gray-800 rounded px-3" placeholder="Email" />
-                <input type="password" class="w-full h-12 border border-gray-800 rounded px-3" placeholder="Пароль" />
-                <input type="password" class="w-full h-12 border border-gray-800 rounded px-3" placeholder="Подтверждение пароля" />
+            <form action="{{ route('register_process') }}" class="space-y-5 mt-5" method="post">
+                @csrf
+
+                <input type="text" name="name" class="w-full h-12 border border-gray-800 rounded px-3 @error('name') border-red-800 @enderror" placeholder="Name">
+
+                @error('name')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
+
+                <input name="email" type="email" class="w-full h-12 border border-gray-800 rounded px-3 @error('email') border-red-800 @enderror" placeholder="Email" />
+
+                @error('email')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
+
+                <input name="password" type="password" class="w-full h-12 border border-gray-800 rounded px-3 @error('password') border-red-800 @enderror" placeholder="Пароль" />
+
+                @error('password')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
+                <input name="password_confirmation" type="password" class="w-full h-12 border border-gray-800 rounded px-3 @error('password_confirmation') border-red-800 @enderror" placeholder="Подтверждение пароля" />
+
+                @error('password_confirmation')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
 
                 <div>
                     <a href="{{ route('login') }}" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Есть аккаунт?</a>
