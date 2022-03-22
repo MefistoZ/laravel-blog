@@ -17,7 +17,8 @@ function commentFormAjaxInit() {
             e.preventDefault();
             let formData = new FormData(form);
             postData(form.getAttribute('action'), formData).then(response => {
-                document.querySelector('#task-comments').insertAdjacentHTML('beforeend', getCommentView(response))
+                form.querySelector('textarea').value = ''
+                document.querySelector('#task-comments').insertAdjacentHTML('afterbegin', getCommentView(response))
             })
         })
     }

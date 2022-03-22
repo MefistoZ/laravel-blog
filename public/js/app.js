@@ -2133,7 +2133,8 @@ function commentFormAjaxInit() {
       e.preventDefault();
       var formData = new FormData(form);
       postData(form.getAttribute('action'), formData).then(function (response) {
-        document.querySelector('#task-comments').insertAdjacentHTML('beforeend', getCommentView(response));
+        form.querySelector('textarea').value = '';
+        document.querySelector('#task-comments').insertAdjacentHTML('afterbegin', getCommentView(response));
       });
     });
   }
