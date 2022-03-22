@@ -2143,8 +2143,21 @@ function commentFormAjaxInit() {
 commentFormAjaxInit();
 
 function getCommentView(data) {
-  return "<div class=\"bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4\">\n                <div class=\"flex flex-row justify-center mr-2\">\n                    <h3 class=\"text-purple-600 font-semibold text-lg text-center md:text-left \">".concat(data.user_name, "</h3>\n                </div>\n                <p style=\"width: 90%\" class=\"text-gray-600 text-lg text-center md:text-left \">").concat(data.text, "</p>\n            </div>");
-}
+  return "<div id=\"comment-wrap\" class=\"bg-white rounded-lg p-3  flex flex-col  shadow-lg mb-4\">\n        <div class=\"flex flex-row justify-between mr-2\">\n            <h3 class=\"text-purple-600 font-semibold text-lg text-center md:text-left \">".concat(data.data.user_name, "</h3>\n            <button type=\"button\" onClick=\"deleteComment(").concat(data.data.id, ", this)\" id=\"delete-comment\"\n                    class=\"close md:text-left\" aria-label=\"Close\">\n                <span aria-hidden=\"true\">&times;</span>\n            </button>\n        </div>\n        <p style=\"width: 90%\" class=\"text-gray-600 text-lg text-center md:text-left \">").concat(data.data.text, "</p>\n    </div>");
+} // --------- comment delete ----------
+
+
+window.deleteComment = function (id, el) {
+  if (confirm('Вы действительно хотите удалить коммент?')) {
+    axios.post('/posts/comment/' + id, {
+      _method: 'DELETE'
+    }).then(function (response) {
+      el.closest('#comment-wrap').remove();
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }
+};
 
 /***/ }),
 

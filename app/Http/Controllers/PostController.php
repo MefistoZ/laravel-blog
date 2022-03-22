@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentForm;
+use App\Http\Resources\CommentResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -29,12 +30,13 @@ class PostController extends Controller
      *
      * @param $id
      * @param CommentForm $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return CommentResource
      */
     public function comment($id, CommentForm $request)
     {
         $post = Post::findOrFail($id);
         $comment = $post->comments()->create($request->validated());
-        return response()->json(['text' => $comment->text, 'user_name' => $comment->user->name]);
+        return new CommentResource($comment);
+//        return response()->json(['text' => $comment->text, 'user_name' => $comment->user->name]);
     }
 }

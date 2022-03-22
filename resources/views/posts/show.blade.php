@@ -32,9 +32,12 @@
 
                     <div id="task-comments" class="pt-4">
                         @foreach($post->comments as $comment)
-                            <div class="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
-                                <div class="flex flex-row justify-center mr-2">
+                            <div id="comment-wrap" class="bg-white rounded-lg p-3  flex flex-col  shadow-lg mb-4">
+                                <div class="flex flex-row justify-between mr-2">
                                     <h3 class="text-purple-600 font-semibold text-lg text-center md:text-left ">{{ $comment->user->name }}</h3>
+                                    <button type="button" onclick="deleteComment({{ $comment->id }}, this)" id="delete-comment" class="close md:text-left" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
 
 
