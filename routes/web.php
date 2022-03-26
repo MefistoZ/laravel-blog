@@ -32,6 +32,10 @@ Route::middleware('guest', )->group(function () {
     Route::post('/register_process', [\App\Http\Controllers\AuthController::class, 'register'])->name('register_process');
 });
 
+Route::get('/contacts', [\App\Http\Controllers\ContactFormController::class, 'showContactForm'])->name('contacts');
+Route::post('/contact_form_process', [\App\Http\Controllers\ContactFormController::class, 'contactForm'])->name('contact_form_process');
+
+
 // Обработка формы с использованием middleware
 //Route::get('/form', function () {
 //    return view('welcome');
