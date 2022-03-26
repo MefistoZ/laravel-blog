@@ -30,6 +30,10 @@ Route::middleware('guest', )->group(function () {
     Route::post('/login_process', [\App\Http\Controllers\AuthController::class, 'login'])->name('login_process');
     Route::get('/register', [\App\Http\Controllers\AuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register_process', [\App\Http\Controllers\AuthController::class, 'register'])->name('register_process');
+
+
+    Route::get('/forgot', [\App\Http\Controllers\ForgotController::class, 'showForgotForm'])->name('forgot');
+    Route::post('/forgot_process', [\App\Http\Controllers\ForgotController::class, 'forgot'])->name('forgot_process');
 });
 
 Route::get('/contacts', [\App\Http\Controllers\ContactFormController::class, 'showContactForm'])->name('contacts');
